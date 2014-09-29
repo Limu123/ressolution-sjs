@@ -27,7 +27,13 @@
 
 		// Create Routes
 	  function createRoute(hash,route){
+	  	app.bind('test', function(e, data) {
+	  		// TODO
+        //alert(data['my_data']);
+        //console.log(data['my_data']);
+      });
 		  app.get(hash, function() {
+		  	//this.trigger('test', {my_data: hash});
 	      $('.container').load(route,function(data){ configureTable(); });
 	    });  	
 	  }
@@ -44,6 +50,7 @@
   $(function() {
     app.run();
   });
+
 
 
 
@@ -92,6 +99,16 @@
 		tableConfigurations.setColumnClasses(hiddenColumns,'hidden-column');
 		tableConfigurations.setCollapseGroups(collapseGroups);
 		tableConfigurations.addEventlistener();
+
+
+
+		// TODO
+  	$('.main-nav a').on('click',function(){
+  		$('.main-nav a').removeClass('current');
+	  	$(this).addClass('current');
+	  });
+
+
 	};
 
 
@@ -193,12 +210,15 @@
 
 		addEventlistener: function(){
 			$('.collapse-0').on('click',function(){
+				$(this).toggleClass('visible');
 				$('.hide-0').toggleClass('visible');
 			});
 			$('.collapse-1').on('click',function(){
+				$(this).toggleClass('visible');
 				$('.hide-1').toggleClass('visible');
 			});
 			$('.collapse-2').on('click',function(){
+				$(this).toggleClass('visible');
 				$('.hide-2').toggleClass('visible');
 			});
 		}

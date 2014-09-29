@@ -19,11 +19,6 @@ $middle-grey: #ccc;
 $dark-grey: #222;
 
 
-@mixin darken-bg($color, $amount){
-  background: darken($color,$amount);
-}
-
-
 
 
 // General & Resets
@@ -32,11 +27,13 @@ h1 {
   text-align: left;
   font-weight: 500;
   color: $dark-grey;
+  font-size: rem-calc(30);
+  margin-left: -0.2rem;
 }
 
 a {
   color: $middle-grey;
-  &:hover, &:active {
+  &:hover, &.current{
     color: $primary-color;
   }
 }
@@ -48,7 +45,13 @@ hr {
 
 table {
   border: none;
+  border: thin solid $middle-grey;
   border-spacing: 0;
+  tr {
+  	td:first-child {
+  		min-width: 220px;
+  	}
+  }
 }
 
 td {
@@ -82,7 +85,34 @@ body {
   padding: 0 1rem;
   ul {
     list-style: none;
+    li {
+    	font-size: rem-calc(14);
+    	font-weight: 400;
+    	a {
+    		padding-left: 1rem;
+    		&:hover, &.current {
+    			background: url(../images/active.svg) 0px center no-repeat;
+    			background-size: auto 70%;
+    		}
+    	}
+    }
+  	.nav-title {
+	  font-weight: 500;
+	  font-size: rem-calc(20);
+	  margin-top: 0.6rem;
+	  a {
+	  	color: $dark-grey;
+	  	padding-left: 0rem;
+	  	&:hover {
+	  		background: none;
+	  	}
+	  }	
+	}
+	.nav-title + .nav-title {
+		margin-top: 0;
+	}
   }
+	
 }
 
 .container {
@@ -92,11 +122,7 @@ body {
   padding: 1rem;
 }
 
-.nav-title {
-  font-weight: 500;
-  font-size: rem-calc(22);
-  a { color: $dark-grey; }	
-}
+
 
 
 .main-table{
@@ -106,81 +132,49 @@ body {
   }
 }
 
-// .f-hidden, .a-hidden {
-//   display: none;
-//   &.visible {
-//     display: table-row;
-//   }
-// }
 
-.collapse-parent td:first-child{
-  background: orange;
+.collapse-parent{
+	td:first-child{
+	  background-image: url(../images/plus.svg);
+	  background-position: 150% center;
+	  background-repeat: no-repeat;
+	  background-size: 60% 60%;
+	}
+	&.visible td:first-child{
+	  background-image: url(../images/minus.svg);
+	  background-position: 150% center;
+	  background-repeat: no-repeat;
+	  background-size: 60% 60%;
+	}
 }
-
-
-// tr:nth-of-type(even){
-// 	background: $row-light-grey;
-// 	td{
-// 		&.darken{
-// 			@include darken-bg($row-light-grey, 10%);
-// 		}
-// 	}
-// }
-
-// tr:nth-of-type(even).secondary-color td {
-//   &.darken{
-//     @include darken-bg($secondary-color, 15%);
-//   }	
-// }
-
-// tr:nth-of-type(even).primary-color td {
-//   &.darken{
-//     @include darken-bg($primary-color, 15%);
-//   }	
-// }
-
-
-.secondary-color td {
-  background: $secondary-color;
-  color: white; 
-  &.darken{
-    @include darken-bg($secondary-color, 15%);
-  }
-}
-
-.primary-color td {
-  background: $primary-color;
-  color: white; 
-  &.darken{
-    @include darken-bg($primary-color, 15%);
-  }
-}
-
-
-
-
-// .primary-color + .primary-color {
-//   td {
-//     background: white;
-//     color: black;
-//     &.darken{
-//       @include darken-bg(white, 15%);
-//     }
-//   }
-// }
-
 
 
 
 .darken {
-  @include darken-bg(white, 10%);
+  background: rgba(black,0.12);
+}
+
+.primary-color {
+	background: $primary-color !important;
+	td {
+		color: white;
+	}
+	&.darken {
+		background: rgba(black,0.12);
+	}
+
+}
+
+.secondary-color {
+	@extend .primary-color; 
+  	background: $secondary-color !important;
 }
 
 
 .red,  .secondary-color .red, .primary-color .red {
   background: $alert-color;
   &.darken{
-  	@include darken-bg($alert-color, 10%);
+  	background: darken($alert-color,10%);
   }
 }
 
@@ -191,6 +185,14 @@ body {
 .hidden-row.visible {
   display: table-row;
 }
+
+
+.summeprojekte td{
+	color: $primary-color;
+}
+
+
+
 
 
 

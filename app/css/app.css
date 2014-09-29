@@ -19189,12 +19189,14 @@ h1 {
   text-align: left;
   font-weight: 500;
   color: #222;
+  font-size: 1.875rem;
+  margin-left: -0.2rem;
 }
 
 a {
   color: #ccc;
 }
-a:hover, a:active {
+a:hover, a.current {
   color: #0a71b4;
 }
 
@@ -19205,7 +19207,11 @@ hr {
 
 table {
   border: none;
+  border: thin solid #ccc;
   border-spacing: 0;
+}
+table tr td:first-child {
+  min-width: 220px;
 }
 
 td {
@@ -19232,20 +19238,38 @@ body {
 .main-nav ul {
   list-style: none;
 }
+.main-nav ul li {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.main-nav ul li a {
+  padding-left: 1rem;
+}
+.main-nav ul li a:hover, .main-nav ul li a.current {
+  background: url(../images/active.svg) 0px center no-repeat;
+  background-size: auto 70%;
+}
+.main-nav ul .nav-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin-top: 0.6rem;
+}
+.main-nav ul .nav-title a {
+  color: #222;
+  padding-left: 0rem;
+}
+.main-nav ul .nav-title a:hover {
+  background: none;
+}
+.main-nav ul .nav-title + .nav-title {
+  margin-top: 0;
+}
 
 .container {
   display: table-cell;
   background: #ececed;
   min-width: 100rem;
   padding: 1rem;
-}
-
-.nav-title {
-  font-weight: 500;
-  font-size: 1.375rem;
-}
-.nav-title a {
-  color: #222;
 }
 
 .main-table {
@@ -19256,33 +19280,40 @@ body {
 }
 
 .collapse-parent td:first-child {
-  background: orange;
+  background-image: url(../images/plus.svg);
+  background-position: 150% center;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
 }
-
-.secondary-color td {
-  background: #424242;
-  color: white;
-}
-.secondary-color td.darken {
-  background: #1c1c1c;
-}
-
-.primary-color td {
-  background: #0a71b4;
-  color: white;
-}
-.primary-color td.darken {
-  background: #06446c;
+.collapse-parent.visible td:first-child {
+  background-image: url(../images/minus.svg);
+  background-position: 150% center;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
 }
 
 .darken {
-  background: #e6e6e6;
+  background: rgba(0, 0, 0, 0.12);
 }
 
-.red, .secondary-color .red, .primary-color .red {
+.primary-color, .secondary-color {
+  background: #0a71b4 !important;
+}
+.primary-color td, .secondary-color td {
+  color: white;
+}
+.primary-color.darken, .darken.secondary-color {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.secondary-color {
+  background: #424242 !important;
+}
+
+.red, .secondary-color .red, .primary-color .red, .secondary-color .red {
   background: #bd0926;
 }
-.red.darken, .secondary-color .red.darken, .primary-color .red.darken {
+.red.darken, .secondary-color .red.darken, .primary-color .red.darken, .secondary-color .red.darken {
   background: #8c071c;
 }
 
@@ -19292,6 +19323,10 @@ body {
 
 .hidden-row.visible {
   display: table-row;
+}
+
+.summeprojekte td {
+  color: #0a71b4;
 }
 
 /*# sourceMappingURL=app.css.map */
