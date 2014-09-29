@@ -2,3 +2,172 @@
 
 @import "compass/css3";
 @import "compass/utilities";
+
+
+
+
+
+
+
+
+$primary-color: #0a71b4;    //blue
+$secondary-color: #424242;  // dark-grey
+$alert-color: #bd0926;      // red
+$light-grey: #ececed;       // light-grey
+$middle-grey: #ccc;
+$dark-grey: #222;
+
+
+@mixin darken-bg($color){
+  background: darken($color,15%);
+}
+
+
+
+
+// General & Resets
+
+h1 {
+  text-align: left;
+  font-weight: 500;
+  color: $dark-grey;
+}
+
+a {
+  color: $middle-grey;
+  &:hover, &:active {
+    color: $primary-color;
+  }
+}
+
+hr {
+  display: none;
+  visibility: hidden;
+}
+
+table {
+  border: none;
+  border-spacing: 0;
+}
+
+td {
+  border: none;
+}
+
+
+
+body {
+  background: white;
+}
+
+
+.wrap {
+  display: table;
+}
+
+
+.main-nav {
+  display: table-cell;
+  min-width: 14rem;
+  padding: 0 1rem;
+  ul {
+    list-style: none;
+  }
+}
+
+.container {
+  display: table-cell;
+  background: $light-grey;
+  min-width: 100rem;
+  padding: 1rem;
+}
+
+.nav-title {
+  font-weight: 500;
+  font-size: rem-calc(28);
+  a { color: $dark-grey; }	
+}
+
+
+
+
+
+
+
+.main-table{
+  border-spacing: 0;
+  td {
+    border-right: 1px solid rgba(black,0.1);
+  }
+  // .freiekapazitaet td, .gesamtbelastung td{
+  //   background: $secondary-color;
+  //   color: white;
+  // }
+
+  // .abwesenheiten td:first-child, .festetermine td:first-child{
+  //   background: yellow;
+  // }
+  // .geplant td, .forecast td, .support td, .interneprojekte td, .ausgeliehen td {
+  //   background: $primary-color;
+  //   color: white;
+  // }
+
+}
+
+.f-hidden, .a-hidden {
+  display: none;
+  &.visible {
+    display: table-row;
+  }
+}
+
+.collapse-parent td:first-child{
+  background: orange;
+}
+
+
+.secondary-color td {
+  background: $secondary-color;
+  color: white; 
+  &.darken{
+    @include darken-bg($secondary-color);
+  }
+}
+
+.primary-color td {
+  background: $primary-color;
+  color: white; 
+  &.darken{
+    @include darken-bg($primary-color);
+  }
+}
+
+.primary-color + .primary-color {
+  td {
+    background: white;
+    color: black;
+    &.darken{
+      @include darken-bg(white);
+    }
+  }
+}
+
+.darken {
+  @include darken-bg(white);
+}
+
+
+.red {
+  background: red !important;
+}
+
+.hidden-column, .hidden-row {
+  display: none;
+}
+
+.hidden-row.visible {
+  display: table-row;
+}
+
+
+

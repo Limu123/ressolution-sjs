@@ -19191,14 +19191,6 @@ h1 {
   color: #222;
 }
 
-h4 {
-  margin: 0;
-  font-weight: 500;
-}
-h4 a {
-  color: #222;
-}
-
 a {
   color: #ccc;
 }
@@ -19242,6 +19234,14 @@ body {
   background: #ececed;
   min-width: 100rem;
   padding: 1rem;
+}
+
+.nav-title {
+  font-weight: 500;
+  font-size: 1.75rem;
+}
+.nav-title a {
+  color: #222;
 }
 
 .main-table {
