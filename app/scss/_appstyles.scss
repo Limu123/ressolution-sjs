@@ -12,14 +12,15 @@
 
 $primary-color: #0a71b4;    //blue
 $secondary-color: #424242;  // dark-grey
-$alert-color: #bd0926;      // red
+$alert-color: #bd0926;      // red aa0000
+$row-light-grey: #F9F9F9;
 $light-grey: #ececed;       // light-grey
 $middle-grey: #ccc;
 $dark-grey: #222;
 
 
-@mixin darken-bg($color){
-  background: darken($color,15%);
+@mixin darken-bg($color, $amount){
+  background: darken($color,$amount);
 }
 
 
@@ -54,6 +55,15 @@ td {
   border: none;
 }
 
+ul {
+	margin: 0;
+}
+
+
+
+
+
+
 
 
 body {
@@ -84,14 +94,9 @@ body {
 
 .nav-title {
   font-weight: 500;
-  font-size: rem-calc(28);
+  font-size: rem-calc(22);
   a { color: $dark-grey; }	
 }
-
-
-
-
-
 
 
 .main-table{
@@ -99,38 +104,47 @@ body {
   td {
     border-right: 1px solid rgba(black,0.1);
   }
-  // .freiekapazitaet td, .gesamtbelastung td{
-  //   background: $secondary-color;
-  //   color: white;
-  // }
-
-  // .abwesenheiten td:first-child, .festetermine td:first-child{
-  //   background: yellow;
-  // }
-  // .geplant td, .forecast td, .support td, .interneprojekte td, .ausgeliehen td {
-  //   background: $primary-color;
-  //   color: white;
-  // }
-
 }
 
-.f-hidden, .a-hidden {
-  display: none;
-  &.visible {
-    display: table-row;
-  }
-}
+// .f-hidden, .a-hidden {
+//   display: none;
+//   &.visible {
+//     display: table-row;
+//   }
+// }
 
 .collapse-parent td:first-child{
   background: orange;
 }
 
 
+// tr:nth-of-type(even){
+// 	background: $row-light-grey;
+// 	td{
+// 		&.darken{
+// 			@include darken-bg($row-light-grey, 10%);
+// 		}
+// 	}
+// }
+
+// tr:nth-of-type(even).secondary-color td {
+//   &.darken{
+//     @include darken-bg($secondary-color, 15%);
+//   }	
+// }
+
+// tr:nth-of-type(even).primary-color td {
+//   &.darken{
+//     @include darken-bg($primary-color, 15%);
+//   }	
+// }
+
+
 .secondary-color td {
   background: $secondary-color;
   color: white; 
   &.darken{
-    @include darken-bg($secondary-color);
+    @include darken-bg($secondary-color, 15%);
   }
 }
 
@@ -138,27 +152,36 @@ body {
   background: $primary-color;
   color: white; 
   &.darken{
-    @include darken-bg($primary-color);
+    @include darken-bg($primary-color, 15%);
   }
 }
 
-.primary-color + .primary-color {
-  td {
-    background: white;
-    color: black;
-    &.darken{
-      @include darken-bg(white);
-    }
-  }
-}
+
+
+
+// .primary-color + .primary-color {
+//   td {
+//     background: white;
+//     color: black;
+//     &.darken{
+//       @include darken-bg(white, 15%);
+//     }
+//   }
+// }
+
+
+
 
 .darken {
-  @include darken-bg(white);
+  @include darken-bg(white, 10%);
 }
 
 
-.red {
-  background: red !important;
+.red,  .secondary-color .red, .primary-color .red {
+  background: $alert-color;
+  &.darken{
+  	@include darken-bg($alert-color, 10%);
+  }
 }
 
 .hidden-column, .hidden-row {
