@@ -19280,6 +19280,7 @@ body {
 }
 
 .collapse-parent td:first-child {
+  cursor: pointer;
   background-image: url(../images/plus.svg);
   background-position: 150% center;
   background-repeat: no-repeat;

@@ -1,11 +1,10 @@
 
-
 (function($) {
 
 	//-------- App Config
   var app = $.sammy(function() {
-  	// Initial Route
-    this.get('/', function() {
+
+    this.get('/', function() {			// the initial route
       $('.container').load('../views/FEINHEIT_60_GRAFIK.htm',function(data){ configureTable(); });
     });
 
@@ -65,7 +64,11 @@
 			'support',
 			'interneprojekte',
 			'forecast',
-			'ausgeliehen'
+			'ausgeliehen',
+			'grafik', 
+			'programmierung', 
+			'projektmanagement', 
+			'beratung&akquise'
 	];
 	var darkenedColumns = [
 			'Wo',
@@ -91,22 +94,21 @@
 		tableConfigurations.removeAttributes(tableFields);
 		tableConfigurations.resetTable();
 		tableConfigurations.setNegative();
-
 		tableConfigurations.setRowClasses();
 		tableConfigurations.setSpecialClasses(primaryTitles,'primary-color');
 		tableConfigurations.setSpecialClasses(secondaryTitles,'secondary-color');
 		tableConfigurations.setColumnClasses(darkenedColumns,'darken');
 		tableConfigurations.setColumnClasses(hiddenColumns,'hidden-column');
 		tableConfigurations.setCollapseGroups(collapseGroups);
-		tableConfigurations.addEventlistener();
+		tableConfigurations.addEventlisteners();
 
 
 
 		// TODO
-  	$('.main-nav a').on('click',function(){
-  		$('.main-nav a').removeClass('current');
-	  	$(this).addClass('current');
-	  });
+  	// $('.main-nav a').on('click',function(){
+  	// 	$('.main-nav a').removeClass('current');
+	  // 	$(this).addClass('current');
+	  // });
 
 
 	};
@@ -208,7 +210,7 @@
 			}					
 		},
 
-		addEventlistener: function(){
+		addEventlisteners: function(){
 			$('.collapse-0').on('click',function(){
 				$(this).toggleClass('visible');
 				$('.hide-0').toggleClass('visible');
