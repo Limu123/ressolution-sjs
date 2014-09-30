@@ -1,0 +1,37 @@
+
+{  
+    "Grafik": 			{ "type":"team", "hash": "grafik", "team": "grafik", "position":"", "route": "FEINHEIT_60_GRAFIK.htm" },
+    "Boris Périsset": 	{ "type":"person", "hash": "bp", "team": "grafik", "position":"Grafik & Illustration 80%", "route": "FEINHEIT_61_BP.htm" },
+    "Diego Borellini": 	{ "type":"person", "hash": "dbo", "team": "grafik", "position":"Grafik & Illustration 100%", "route": "FEINHEIT_62_DBO.htm" },
+    "Lisa Müller": 		{ "type":"person", "hash": "lm", "team": "grafik", "position":"Interaction Design 80%", "route": "FEINHEIT_63_LM.htm" },
+    "Wesllen Gschwind": { "type":"person", "hash": "wg", "team": "grafik", "position":"Grafikpraktikum 80%", "route": "FEINHEIT_64_WG.htm" },
+
+    "Programmierung": 		{ "type":"team", "hash": "dev", "team": "dev", "position":"", "route": "FEINHEIT_65_DEV.htm" },
+    "Matthias Kestenholz": 	{ "type":"person", "hash": "mk", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_72_MK.htm" },
+    "Urs Breton": 			{ "type":"person", "hash": "ub", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_71_UB.htm" },
+    "Simon Bächler": 		{ "type":"person", "hash": "sb", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_70_SB.htm" },
+    "Dan Büschlen": 		{ "type":"person", "hash": "dab", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_69_DAB.htm" },
+    "Subaida Dibs": 		{ "type":"person", "hash": "sd", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_68_SD.htm" },
+    "Fabian Germann": 		{ "type":"person", "hash": "fg", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_67_FG.htm" },
+    "Niklaus Hug": 			{ "type":"person", "hash": "nh", "team": "dev", "position":"Programmierung 80%", "route": "FEINHEIT_66_NH.htm" },
+
+    "Projektmanagement": 	{ "type":"team", "hash": "pl", "team": "pl", "position":"", "route": "FEINHEIT_79_PL.htm" },
+    "Martina Heeb": 		{ "type":"person", "hash": "mh", "team": "pl", "position":"Projektmanagement 80%", "route": "FEINHEIT_80_MH.htm" },    
+    "Moritz Gerber": 		{ "type":"person", "hash": "mg", "team": "pl", "position":"Projektmanagement 80%", "route": "FEINHEIT_81_MG.htm" },
+    "Hannes Schwarz": 		{ "type":"person", "hash": "hs", "team": "pl", "position":"Projektmanagement 80%", "route": "FEINHEIT_82_HS.htm" },
+    "Simone Wasmann": 		{ "type":"person", "hash": "sw", "team": "pl", "position":"PProjektmanagement 80%", "route": "FEINHEIT_83_SW.htm" },  
+
+    "Beratung & Akquise": 	{ "type":"team", "hash": "b&a", "team": "b&a", "position":"", "route": "FEINHEIT_73_B&A.htm" },
+    "Rolando Baron": 		{ "type":"person", "hash": "rb", "team": "b&a", "position":"B&A 80%", "route": "FEINHEIT_74_RB.htm" },    
+    "Chantal Genoud": 		{ "type":"person", "hash": "cg", "team": "b&a", "position":"B&A 80%", "route": "FEINHEIT_76_CG.htm" },
+    "Stephan Germann": 		{ "type":"person", "hash": "sg", "team": "b&a", "position":"B&A 80%", "route": "FEINHEIT_77_SG.htm" },
+    "Tobias Günter": 		{ "type":"person", "hash": "tg", "team": "b&a", "position":"B&A 80%", "route": "FEINHEIT_78_TG.htm" },
+    "Patrik Schmid": 		{ "type":"person", "hash": "ps", "team": "b&a", "position":"B&A 80%", "route": "FEINHEIT_75_PS.htm" },
+
+    "Gesamtes Team": 	{ "type":"team", "hash": "team", "team": "team", "position":"", "route": "FEINHEIT_TO.htm" },
+    "Abwesenheiten": 	{ "type":"team", "hash": "abwesenheiten", "team": "team", "position":"", "route": "Abwesenheiten.htm" }
+
+
+}
+
+
