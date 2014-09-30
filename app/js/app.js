@@ -4,36 +4,33 @@
 	//-------- App Config
   var app = $.sammy(function() {
 
-    this.get('/', function() {			// the initial route
-      $('.container').load('../views/FEINHEIT_60_GRAFIK.htm',function(data){ configureTable(); });
-    });
-
     // Get Data
 		$.getJSON( "js/data.json", function( data ) {
 			var links = [];
 		  $.each( data, function( table, tabledata ) {
-		    var hash = "#/"+tabledata.hash;
-		    var route = "../views/"+tabledata.route;
+		    var hash = "#/"+tabledata.hash,
+		    		route = "../views/"+tabledata.route,
+		    		classname = tabledata.hash;
+		    		position = tabledata.position;
 		    if(tabledata.type == "person"){
-		    	links.push("<li><a href='"+hash+"'>"+table+"</a></li>");
+		    	links.push("<li class='"+classname+"'><a href='"+hash+"'>"+table+"</a></li>");
 		    } else {
-		    	links.push("<li class='nav-title'><a href='"+hash+"'>"+table+"</a></li>");
+		    	links.push("<li class='nav-title "+classname+"'><a href='"+hash+"'>"+table+"</a></li>");
 		    }
-		    createRoute(hash,route);
+		    createRoute(hash,route,classname,table,position);
 		  });
 		  createNavi(links);
 		});
 
 		// Create Routes
-	  function createRoute(hash,route){
-	  	app.bind('test', function(e, data) {
-	  		// TODO
-        //alert(data['my_data']);
-        //console.log(data['my_data']);
-      });
+	  function createRoute(hash,route,classname,table,position){
+
 		  app.get(hash, function() {
-		  	//this.trigger('test', {my_data: hash});
-	      $('.container').load(route,function(data){ configureTable(); });
+	      $('.container').load(route,function(data){
+	      	configureTable(table,position);
+	      	if(hash == '#/'){ return; }
+	      	configureNavi(classname);
+	      });
 	    });  	
 	  }
 
@@ -42,13 +39,36 @@
 		  $( "<ul/>", { "class": "navi", html: links.join( "" ) }).appendTo( ".main-nav" );
 	  }
 
-  }); // var app end
+  }); // app config end
+
+
 
 
   //-------- Run App
   $(function() {
     app.run();
   });
+
+
+
+
+	//-------- Navi Config
+	var configureNavi = function(classname){
+		naviConfigurations.reset();
+		naviConfigurations.setActive(classname);
+	};
+
+	var naviConfigurations = {
+		reset: function(){
+			$('.main-nav li a').removeClass('current');
+		},
+		setActive: function(classname){
+			var el = '.main-nav li.'+classname+' a';
+			$(el).addClass("current");
+		}
+	}; // naviConfigurations end
+
+
 
 
 
@@ -90,27 +110,20 @@
 			'td'
 	];
 
-	var configureTable = function(){
+	var weekArr = [];
+
+	var configureTable = function(table,position){
 		tableConfigurations.removeAttributes(tableFields);
-		tableConfigurations.resetTable();
+		tableConfigurations.resetTable(table,position);
 		tableConfigurations.setNegative();
 		tableConfigurations.setRowClasses();
 		tableConfigurations.setSpecialClasses(primaryTitles,'primary-color');
 		tableConfigurations.setSpecialClasses(secondaryTitles,'secondary-color');
 		tableConfigurations.setColumnClasses(darkenedColumns,'darken');
 		tableConfigurations.setColumnClasses(hiddenColumns,'hidden-column');
+		tableConfigurations.hideWeekends('hidden-column');
 		tableConfigurations.setCollapseGroups(collapseGroups);
 		tableConfigurations.addEventlisteners();
-
-
-
-		// TODO
-  	// $('.main-nav a').on('click',function(){
-  	// 	$('.main-nav a').removeClass('current');
-	  // 	$(this).addClass('current');
-	  // });
-
-
 	};
 
 
@@ -132,8 +145,9 @@
 		  }		
 		},
 
-		resetTable: function(){				// reset the table
-			$('h1').html($('h1').text().split('-')[1]);
+		resetTable: function(table,position){				// reset the table
+			//$('h1').html($('h1').text().split('-')[1]);
+			$('h1').text(table).append('&nbsp;<span>'+position+'</span>');
 			$('table:eq(1)').unwrap().unwrap().unwrap().unwrap();
 		  $('table').first().addClass('main-table');
 		  $('title,hr').remove();
@@ -142,7 +156,7 @@
 		setNegative: function(){			// set negative color
 		  $('td').each(function(){
 		    if(parseFloat($(this).html()) < 0){
-		      $(this).addClass("red");
+		      $(this).addClass("negative");
 		    }
 		  });			
 		},
@@ -185,23 +199,45 @@
 		        rowArr.push(i);
 		      }
 		    });
-		    // Add classname
-		    for(var j=0; j<rowArr.length; j++){
-		      var td = 'td:nth-child('+(rowArr[j]+1)+')';
-		      $(td).addClass(classname);
-		    }
-		  }				
+		    if(testStringArr[k]=="Wo"){
+		    	weekArr = rowArr;
+		    }	
+		    this.setClasses(rowArr,classname);
+		  }			
+		},
+
+		hideWeekends: function(classname){					// hide the weekends
+			var weekendsArr = [];
+			for(var i = 0; i < weekArr.length; i++){
+				var tempSa = weekArr[i]+6;
+				var tempSo = weekArr[i]+7;
+				weekendsArr.push(tempSa);
+				weekendsArr.push(tempSo);
+			}
+	    this.setClasses(weekendsArr,classname);
+		},
+
+		setClasses: function(arr,classname){
+	    for(var i=0; i<arr.length; i++){
+	      var td = 'td:nth-child('+(arr[i]+1)+')';
+	      $(td).addClass(classname);
+	    }
 		},
 
 		setCollapseGroups: function(groupArr){			// set accordion groups
 			for(var i = 0; i<groupArr.length; i++){
-				var start, end, range;
-				$('tr').each(function(j){
+				var start, end;
+				var tempStart, tempEnd;
+				$('tr').each(function(j){		
 					if($(this).hasClass(groupArr[i][0])){
-						$(this).addClass('collapse-parent collapse-'+i);
 						start = j+2;
+						tempStart = $(this);
 					}
-					if($(this).hasClass(groupArr[i][1])){ end = j+1; }
+					if($(this).hasClass(groupArr[i][1])){
+						end = j+1;
+						tempEnd = $(this);
+						if(end-start > 0){ tempStart.addClass('collapse-parent collapse-'+i); }						
+					}
 				});
 		    for (var k = start; k < end; k++){
 		      var tr = 'tr:nth-child('+k+')';

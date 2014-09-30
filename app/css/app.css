@@ -19190,7 +19190,9 @@ h1 {
   font-weight: 500;
   color: #222;
   font-size: 1.875rem;
-  margin-left: -0.2rem;
+}
+h1 span {
+  font-size: 0.875rem;
 }
 
 a {
@@ -19249,17 +19251,18 @@ body {
   background: url(../images/active.svg) 0px center no-repeat;
   background-size: auto 70%;
 }
-.main-nav ul .nav-title {
+.main-nav ul li.nav-title {
   font-weight: 500;
   font-size: 1.25rem;
   margin-top: 0.6rem;
 }
-.main-nav ul .nav-title a {
+.main-nav ul li.nav-title a {
   color: #222;
   padding-left: 0rem;
 }
-.main-nav ul .nav-title a:hover {
+.main-nav ul li.nav-title a:hover, .main-nav ul li.nav-title a.current {
   background: none;
+  color: #0a71b4;
 }
 .main-nav ul .nav-title + .nav-title {
   margin-top: 0;
@@ -19276,7 +19279,8 @@ body {
   border-spacing: 0;
 }
 .main-table td {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 .collapse-parent td:first-child {
@@ -19311,10 +19315,10 @@ body {
   background: #424242 !important;
 }
 
-.red, .secondary-color .red, .primary-color .red, .secondary-color .red {
+.negative, .secondary-color .negative, .primary-color .negative, .secondary-color .negative {
   background: #bd0926;
 }
-.red.darken, .secondary-color .red.darken, .primary-color .red.darken, .secondary-color .red.darken {
+.negative.darken, .secondary-color .negative.darken, .primary-color .negative.darken, .secondary-color .negative.darken {
   background: #8c071c;
 }
 

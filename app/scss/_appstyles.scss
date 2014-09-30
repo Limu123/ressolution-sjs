@@ -28,7 +28,9 @@ h1 {
   font-weight: 500;
   color: $dark-grey;
   font-size: rem-calc(30);
-  margin-left: -0.2rem;
+  span {
+    font-size: rem-calc(14);
+  }
 }
 
 a {
@@ -65,10 +67,6 @@ ul {
 
 
 
-
-
-
-
 body {
   background: white;
 }
@@ -86,8 +84,8 @@ body {
   ul {
     list-style: none;
     li {
-    	font-size: rem-calc(14);
-    	font-weight: 400;
+      font-size: rem-calc(14);
+      font-weight: 400;
     	a {
     		padding-left: 1rem;
     		&:hover, &.current {
@@ -96,17 +94,18 @@ body {
     		}
     	}
     }
-  	.nav-title {
-	  font-weight: 500;
-	  font-size: rem-calc(20);
-	  margin-top: 0.6rem;
-	  a {
-	  	color: $dark-grey;
-	  	padding-left: 0rem;
-	  	&:hover {
-	  		background: none;
-	  	}
-	  }	
+  	li.nav-title {
+  	  font-weight: 500;
+  	  font-size: rem-calc(20);
+  	  margin-top: 0.6rem;
+  	  a {
+  	  	color: $dark-grey;
+  	  	padding-left: 0rem;
+  	  	&:hover, &.current {
+  	  		background: none;
+          color: $primary-color;
+  	  	}
+  	  }	
 	}
 	.nav-title + .nav-title {
 		margin-top: 0;
@@ -124,11 +123,11 @@ body {
 
 
 
-
 .main-table{
   border-spacing: 0;
   td {
-    border-right: 1px solid rgba(black,0.1);
+    border-right: 1px solid rgba(black,0.05);
+    border-bottom: 1px solid rgba(black,0.02);
   }
 }
 
@@ -148,7 +147,6 @@ body {
 	  background-size: 60% 60%;
 	}
 }
-
 
 
 .darken {
@@ -172,7 +170,7 @@ body {
 }
 
 
-.red,  .secondary-color .red, .primary-color .red {
+.negative,  .secondary-color .negative, .primary-color .negative {
   background: $alert-color;
   &.darken{
   	background: darken($alert-color,10%);
@@ -191,9 +189,4 @@ body {
 .summeprojekte td{
 	color: $primary-color;
 }
-
-
-
-
-
 
