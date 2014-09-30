@@ -1,3 +1,5 @@
+'use strict';
+
 
 (function($) {
 
@@ -5,17 +7,17 @@
   var app = $.sammy(function() {
 
     // Get Data
-		$.getJSON( "js/data.json", function( data ) {
+		$.getJSON( 'js/data.json', function( data ) {
 			var links = [];
 		  $.each( data, function( table, tabledata ) {
-		    var hash = "#/"+tabledata.hash,
-		    		route = "../views/"+tabledata.route,
-		    		classname = tabledata.hash;
+		    var hash = '#/'+tabledata.hash,
+		    		route = '../views/'+tabledata.route,
+		    		classname = tabledata.hash,
 		    		position = tabledata.position;
-		    if(tabledata.type == "person"){
-		    	links.push("<li class='"+classname+"'><a href='"+hash+"'>"+table+"</a></li>");
+		    if(tabledata.type === 'person'){
+		    	links.push('<li class="'+classname+'"><a href="'+hash+'">'+table+'</a></li>');
 		    } else {
-		    	links.push("<li class='nav-title "+classname+"'><a href='"+hash+"'>"+table+"</a></li>");
+		    	links.push('<li class="nav-title '+classname+'"><a href="'+hash+'">'+table+'</a></li>');
 		    }
 		    createRoute(hash,route,classname,table,position);
 		  });
@@ -24,11 +26,9 @@
 
 		// Create Routes
 	  function createRoute(hash,route,classname,table,position){
-
 		  app.get(hash, function() {
-	      $('.container').load(route,function(data){
+	      $('.container').load(route,function(){
 	      	configureTable(table,position);
-	      	if(hash == '#/'){ return; }
 	      	configureNavi(classname);
 	      });
 	    });  	
@@ -36,7 +36,7 @@
 
 	  // Create Navi
 	  function createNavi(links){
-		  $( "<ul/>", { "class": "navi", html: links.join( "" ) }).appendTo( ".main-nav" );
+		  $( '<ul/>', { 'class': 'navi', html: links.join( '' ) }).appendTo( '.main-nav' );
 	  }
 
   }); // app config end
@@ -64,7 +64,7 @@
 		},
 		setActive: function(classname){
 			var el = '.main-nav li.'+classname+' a';
-			$(el).addClass("current");
+			$(el).addClass('current');
 		}
 	}; // naviConfigurations end
 
@@ -74,11 +74,14 @@
 
 
 	//-------- Table Config
+
+	// set grey background if row has class
 	var secondaryTitles = [
 			'freiekapazitaet',
 			'gesamtbelastung'
 	];
 
+	// set blue background if row has class
 	var primaryTitles = [
 			'geplant',
 			'support',
@@ -90,26 +93,34 @@
 			'projektmanagement', 
 			'beratung&akquise'
 	];
+
+	// darken a column if string in first row contains substring 
 	var darkenedColumns = [
-			'Wo',
-			'Verant'
+			'Wo'
 	];
+
+	// hide a column if string in first row contains substring
 	var hiddenColumns = [
 			'Start',
 			'Ende',
 			'Total'
 	];
+
+	// collapse rows after [0] and before [1]
 	var collapseGroups = [
 			['abwesenheiten','freiekapazitaet'],
 			['festetermine','grundlasten'],
 			['grundlasten','summeprojekte']
 	];
+
+	// remove all attributes and inline-styling
 	var tableFields = [
 			'table',
 			'h1',
 			'td'
 	];
 
+	// week columns
 	var weekArr = [];
 
 	var configureTable = function(table,position){
@@ -131,7 +142,7 @@
 	var tableConfigurations = {
 
 		removeAttributes: function(selectors){			// remove all attributes
-		  for(var i = 0; i < selectors.length; i++){
+		  for(var i = 0, len=selectors.length; i < len; i++){
 		    $(selectors[i]).each(function(){
 		      var $el = $(this);
 		      var attributes = $.map(this.attributes,function(attribute){
@@ -156,13 +167,13 @@
 		setNegative: function(){			// set negative color
 		  $('td').each(function(){
 		    if(parseFloat($(this).html()) < 0){
-		      $(this).addClass("negative");
+		      $(this).addClass('negative');
 		    }
 		  });			
 		},
 
 		setRowClasses: function(){				// set row classes
-		  $('.main-table tr').each(function(i){
+		  $('.main-table tr').each(function(){
 		  	var substr = '&nbsp;&nbsp;&nbsp';
 		    var classname = $(this).children().first().text().toLowerCase();
 		    classname = classname.replace(/\s+/g, '')
@@ -181,7 +192,7 @@
 
 		setSpecialClasses: function(selectors,classname){			// set special classes
 		  for(var i = 0; i < selectors.length; i++){
-		    $('.main-table tr').each(function(j){
+		    $('.main-table tr').each(function(){
 		      if($(this).hasClass(selectors[i])){
 		        $(this).addClass(classname);
 		      }
@@ -199,7 +210,7 @@
 		        rowArr.push(i);
 		      }
 		    });
-		    if(testStringArr[k]=="Wo"){
+		    if(testStringArr[k]==='Wo'){
 		    	weekArr = rowArr;
 		    }	
 		    this.setClasses(rowArr,classname);
@@ -217,7 +228,7 @@
 	    this.setClasses(weekendsArr,classname);
 		},
 
-		setClasses: function(arr,classname){
+		setClasses: function(arr,classname){		// set classes
 	    for(var i=0; i<arr.length; i++){
 	      var td = 'td:nth-child('+(arr[i]+1)+')';
 	      $(td).addClass(classname);
@@ -246,7 +257,7 @@
 			}					
 		},
 
-		addEventlisteners: function(){
+		addEventlisteners: function(){			// event listeners
 			$('.collapse-0').on('click',function(){
 				$(this).toggleClass('visible');
 				$('.hide-0').toggleClass('visible');
@@ -265,13 +276,6 @@
 
 
 })(jQuery); // Config end
-
-
-
-
-
-
-
 
 
 

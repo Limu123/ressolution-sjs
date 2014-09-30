@@ -8,7 +8,7 @@
 
 
 
-
+// Variables
 
 $primary-color: #0a71b4;    //blue
 $secondary-color: #424242;  // dark-grey
@@ -47,7 +47,6 @@ hr {
 
 table {
   border: none;
-  border: thin solid $middle-grey;
   border-spacing: 0;
   tr {
   	td:first-child {
@@ -80,7 +79,7 @@ body {
 .main-nav {
   display: table-cell;
   min-width: 14rem;
-  padding: 0 1rem;
+  padding: 1rem 1.2rem;
   ul {
     list-style: none;
     li {
@@ -98,6 +97,9 @@ body {
   	  font-weight: 500;
   	  font-size: rem-calc(20);
   	  margin-top: 0.6rem;
+      &:first-child {
+        margin-top: 0;
+      }
   	  a {
   	  	color: $dark-grey;
   	  	padding-left: 0rem;
@@ -118,7 +120,7 @@ body {
   display: table-cell;
   background: $light-grey;
   min-width: 100rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 
@@ -150,7 +152,7 @@ body {
 
 
 .darken {
-  background: rgba(black,0.12);
+  background: rgba(black,0.1);
 }
 
 .primary-color {
@@ -158,8 +160,8 @@ body {
 	td {
 		color: white;
 	}
-	&.darken {
-		background: rgba(black,0.12);
+	.darken {
+		background: rgba(black,0.4);
 	}
 
 }
@@ -188,5 +190,9 @@ body {
 
 .summeprojekte td{
 	color: $primary-color;
+  background: white;
+  &.darken {
+    background: rgba(black,0.1);
+  }
 }
 
